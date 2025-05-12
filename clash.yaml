@@ -3,13 +3,50 @@ mixed-port: 7897
 ipv6: true
 mode: rule
 unified-delay: true
+tcp-concurrent: true
+allow-lan: true
 bind-address: "*"
-log-level: silent
+log-level: warning
 
 # 控制面板
 external-controller: 0.0.0.0:9097
 secret: ""
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
+# 匹配进程 always/strict/off
+find-process-mode: strict
+global-client-fingerprint: chrome
+disable-keep-alive: false
+keep-alive-idle: 600
+keep-alive-interval: 15
+
+# 策略组选择和fakeip缓存
+profile:
+  store-selected: true
+  store-fake-ip: true
+  
+# DNS
+dns:
+  enable: true
+  ipv6: true
+  listen: ':1053'
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+  - "rule-set:fake_ip_filter"
+  - "rule-set:private_domain"
+  - "rule-set:cn_domain"
+  - "rule-set:google_cn_domain"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 2400:3200::1
+    - '2402:4800::'
+  nameserver:
+    - 8.8.8.8
+    - 2001:4860:4860::8888
 # 节点
 proxies:
   - { name: '🟢 直连', type: direct, udp: true}
@@ -110,6 +147,7 @@ rule-providers:
   telegram_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   youtube_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   google_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  google_cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@cn.mrs"}
   ai_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"}
   tiktok_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
@@ -119,9 +157,8 @@ rule-providers:
   gfw_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   apple@cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs"}
-  #Advertising_domain: {!!merge <<: *qcy, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Domain.txt"}
-  #Advertising_list: {!!merge <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list"}
   bilibili_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs"}
+  fake_ip_filter: {!!merge <<: *qcy, url: "https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list"}
   # ip
   telegram_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
@@ -130,9 +167,7 @@ rule-providers:
 # 规则
 rules:
   # 域名
-  # 广告
-  #- RULE-SET,Advertising_domain,🛑 拦截
-  #- RULE-SET,Advertising_list,🛑 拦截
+
   # 直连
   - RULE-SET,private_domain,🟢 直连
   - DOMAIN,user666.dukadi.one,🟢 直连 
@@ -149,16 +184,15 @@ rules:
   - RULE-SET,csdn_domain,🟢 直连
   - RULE-SET,gitee_domain,🟢 直连
   - RULE-SET,cn_domain,🟢 直连
-  # 谷歌Play下载(国内直连)
-  - GEOSITE,GOOGLE-PLAY@CN,🟢 直连
-  - DOMAIN-REGEX,^r+[0-9]+(---|\.)sn-(2x3|ni5|j5o)\w{5}\.xn--ngstr-lra8j\.com$,🟢 直连
+  # 谷歌国内(国内直连)
+  - RULE-SET,google_cn_domain,🟢 直连
   # AI
   - RULE-SET,ai_domain,🤖 chatGPT
   # telegram
   - RULE-SET,telegram_domain,📲 电报信息
   # TikTok
   - RULE-SET,tiktok_domain,🎵 TikTok
-  #Youtube
+  # Youtube
   - RULE-SET,youtube_domain,▶️ Youtube
   # Steam
   # 国外代理
@@ -193,5 +227,6 @@ rules:
   - RULE-SET,telegram_ip,📲 电报信息,no-resolve
   - RULE-SET,google_ip,🌍 国外代理,no-resolve
   - RULE-SET,cn_ip,🟢 直连
+  
   # 未匹配
   - MATCH,🐟 漏网之鱼
