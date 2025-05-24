@@ -1,0 +1,199 @@
+# 机场订阅
+proxy-providers:
+#  provider1:
+#    type: http
+#    interval: 360
+#    health-check:
+#      enable: true
+#      url: https://www.gstatic.com/generate_204
+#      interval: 300
+#      proxy: 🟢 直连
+#    url: https://provider
+#    path: ./机场订阅/provider.yaml
+#    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+# 全局配置
+mixed-port: 7897
+ipv6: true
+mode: rule
+unified-delay: true
+tcp-concurrent: true
+allow-lan: true
+bind-address: "*"
+log-level: warning
+
+# 控制面板
+external-controller: 0.0.0.0:9097
+secret: ""
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+# 匹配进程 always/strict/off
+find-process-mode: strict
+global-client-fingerprint: chrome
+disable-keep-alive: false
+keep-alive-idle: 600
+keep-alive-interval: 15
+
+# 策略组选择和fakeip缓存
+profile:
+  store-selected: true
+  store-fake-ip: true
+  
+# DNS
+dns:
+  enable: true
+  ipv6: true
+  listen: ':1053'
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+  - "rule-set:fake_ip_filter"
+  - "rule-set:private_domain"
+  - "rule-set:cn_domain"
+  - "rule-set:google_cn_domain"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - 119.29.29.29
+    - 223.6.6.6
+# 节点
+proxies:
+  - { name: 🟢 直连, type: direct, udp: true }
+  - { name: 🛑 拦截, type: reject, udp: true }
+
+# 代理组锚点   
+pg:
+  pr1: &pr1 {type: select, lazy: true, proxies: [🚀 节点选择, ♻️ 自动选择, 🌐 全部节点, 🇯🇵 日本, 🇭🇰 香港, 🇸🇬 新加坡, 🇬🇧 英国, 🇦🇺 澳大利亚, 🇫🇷 法国, 🇺🇸 美国, 🇮🇳 印度, 🇻🇳 越南, 🇩🇪 德国, 🇰🇷 韩国, 🇹🇼 台湾, 🟢 直连]}
+  pr2: &pr2 {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 20, include-all: true, lazy: true, hidden: true}
+  pr3: &pr3 {type: load-balance, strategy: round-robin, lazy: false, interval: 300, hidden: true, url: https://www.gstatic.com/generate_204}
+  pr4: &pr4 {type: url-test, url: https://cp.cloudflare.com/generate_204, interval: 300, tolerance: 10, lazy: false, hidden: false}
+# 代理组
+proxy-groups:
+  - {name: 🚀 节点选择, type: select, proxies: [♻️ 自动选择, 🌐 全部节点, 🇯🇵 日本, 🇭🇰 香港, 🇸🇬 新加坡, 🇬🇧 英国, 🇦🇺 澳大利亚, 🇫🇷 法国, 🇺🇸 美国, 🇮🇳 印度, 🇻🇳 越南, 🇩🇪 德国, 🇰🇷 韩国, 🇹🇼 台湾, 🟢 直连]}
+  - {name: 🌐 全部节点, type: select, include-all: true, exclude-type: Direct|Reject}
+  - {name: ♻️ 自动选择, type: url-test, url: https://www.gstatic.com/generate_204, lazy: false, interval: 300, tolerance: 50, include-all: true, exclude-type: Direct|Reject,hidden: true}
+  - {name: 🎮 Steam地区,!!merge <<: *pr1}
+  - {name: 🌐 Steam下载,!!merge <<: *pr1}
+  - {name: 🤖 chatGPT, include-all: true, filter: chatGPT,!!merge <<: *pr1}
+  - {name: 📲 电报信息,!!merge <<: *pr1}
+  - {name: Ⓜ️ 微软服务,!!merge <<: *pr1}
+  - {name: 🍎 苹果服务,!!merge <<: *pr1}
+  - {name: 🎵 TikTok,!!merge <<: *pr1}
+  - {name: ▶️ Youtube,!!merge <<: *pr1}
+  - {name: 📺 Bilibili,!!merge <<: *pr1}
+  - {name: 🌍 国外代理,!!merge <<: *pr1}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr1}
+  - {name: 🇯🇵 日本, filter: 日本|JP,!!merge <<: *pr2}
+  - {name: 🇭🇰 香港, filter: 香港|HK,!!merge <<: *pr2}
+  - {name: 🇸🇬 新加坡, filter: 新加坡|SG,!!merge <<: *pr2}
+  - {name: 🇬🇧 英国, filter: 英国|UK,!!merge <<: *pr2}
+  - {name: 🇦🇺 澳大利亚, filter: 悉尼|AU|澳大利亚,!!merge <<: *pr2}
+  - {name: 🇫🇷 法国, filter: 法国|FR,!!merge <<: *pr2}
+  - {name: 🇺🇸 美国, filter: 美国|US,!!merge <<: *pr2}
+  - {name: 🇮🇳 印度, filter: 印度|IN,!!merge <<: *pr2}
+  - {name: 🇻🇳 越南, filter: 越南|VN,!!merge <<: *pr2}
+  - {name: 🇩🇪 德国, filter: 德国|DE,!!merge <<: *pr2}
+  - {name: 🇰🇷 韩国, filter: 韩国|KR,!!merge <<: *pr2}
+  - {name: 🇹🇼 台湾, filter: TW|台湾, !!merge <<: *pr2}
+
+  
+#规则集锚点
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  qcy: &qcy {type: http, interval: 86400, behavior: domain, format: text}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+  
+# 规则集
+rule-providers:
+  # 域名
+  microsoft_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  private_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  telegram_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  youtube_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  google_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  google_cn_domain: {!!merge <<: *class, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/google@cn.list"}
+  ai_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"}
+  tiktok_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+  cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  microsoft@cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs"}
+  csdn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/csdn.mrs"}
+  gitee_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gitee.mrs"}
+  gfw_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  apple@cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs"}
+  bilibili_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs"}
+  fake_ip_filter: {!!merge <<: *qcy, url: "https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list"}
+  # ip
+  telegram_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  cn_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  
+# 规则
+rules:
+  ##### 域名
+  # 直连
+  - RULE-SET,private_domain,🟢 直连
+  - DOMAIN,user666.dukadi.one,🟢 直连 
+  - DOMAIN,em7.buzz,🟢 直连
+  - DOMAIN,k7hub.no-mad-world.club,🟢 直连
+  # 微软GitHub
+  - RULE-SET,microsoft@cn_domain,🟢 直连
+  - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
+  # Bilibili
+  - RULE-SET,bilibili_domain,📺 Bilibili
+  # 国内
+  - RULE-SET,csdn_domain,🟢 直连
+  - RULE-SET,gitee_domain,🟢 直连
+  - RULE-SET,cn_domain,🟢 直连
+  # 谷歌国内(国内直连)
+  - RULE-SET,google_cn_domain,🟢 直连
+  # AI
+  - RULE-SET,ai_domain,🤖 chatGPT
+  # telegram
+  - RULE-SET,telegram_domain,📲 电报信息
+  # TikTok
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  # Youtube
+  - RULE-SET,youtube_domain,▶️ Youtube
+  # Steam
+  # 国外代理
+  - DOMAIN-SUFFIX,steampowered.com,🌍 国外代理
+  - DOMAIN-SUFFIX,steamcommunity.com,🌍 国外代理
+  - DOMAIN-SUFFIX,steamstatic.com,🌍 国外代理
+  - DOMAIN-SUFFIX,steamusercontent.com,🌍 国外代理
+  - DOMAIN-SUFFIX,steam-chat.com,🌍 国外代理
+  - DOMAIN,steamcommunity-a.akamaihd.net,🌍 国外代理
+  - DOMAIN,steamuserimages-a.akamaihd.net,🌍 国外代理
+  - DOMAIN-SUFFIX,cloudflare.steamstatic.com,🌍 国外代理
+  - DOMAIN,edge.steam-dns.top.comcast.net,🌍 国外代理
+  # 直连
+  - DOMAIN,steamcdn-a.akamaihd.net,🟢 直连
+  - DOMAIN-SUFFIX,cm.steampowered.com,🟢 直连
+  # Steam 地区节点
+  - DOMAIN-SUFFIX,steamserver.net,🎮 Steam地区
+  # 下载节点
+  - DOMAIN-SUFFIX,steamcontent.com,🌐 Steam下载
+  - DOMAIN,steampipe.akamaized.net,🌐 Steam下载
+  - DOMAIN-SUFFIX,gofile.io,🌐 Steam下载
+  # 苹果服务
+  - RULE-SET,apple@cn_domain,🍎 苹果服务
+  # 国外代理
+  - DOMAIN-SUFFIX,yishiguji.me,♻️ 自动选择
+  - DOMAIN-SUFFIX,hajimi.icu,🌍 国外代理
+  - DOMAIN-SUFFIX,dukadi.one,🌍 国外代理
+  - DOMAIN-SUFFIX,eclipse.org,🌍 国外代理
+  - DOMAIN-SUFFIX,claw.cloud,🇸🇬 新加坡
+  - DOMAIN-SUFFIX,qichiyu.com,🇺🇸 美国
+  - RULE-SET,google_domain,🌍 国外代理
+  - RULE-SET,gfw_domain,🌍 国外代理
+  - RULE-SET,geolocation-!cn,🌍 国外代理
+  ##### ip
+  - RULE-SET,telegram_ip,📲 电报信息,no-resolve
+  - RULE-SET,google_ip,🌍 国外代理,no-resolve
+  - RULE-SET,cn_ip,🟢 直连
+  
+  # 未匹配
+  - MATCH,🐟 漏网之鱼
