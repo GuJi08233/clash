@@ -176,7 +176,7 @@ rules:
   # 苹果服务
   - RULE-SET,apple@cn_domain,🍎 苹果服务
   # 国外代理
-  - DOMAIN-SUFFIX,yishiguji.me,♻️ 自动选择
+  - DOMAIN-SUFFIX,yishiguji.me,🚀 节点选择
   - DOMAIN-SUFFIX,hajimi.icu,🌍 国外代理
   - DOMAIN-SUFFIX,dukadi.one,🌍 国外代理
   - DOMAIN-SUFFIX,eclipse.org,🌍 国外代理
