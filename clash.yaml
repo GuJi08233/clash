@@ -26,6 +26,26 @@ profile:
   store-selected: true
   store-fake-ip: true
   
+# DNS
+dns:
+  enable: true
+  ipv6: true
+  listen: ':1053'
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+  - "rule-set:fake_ip_filter"
+  - "rule-set:private_domain"
+  - "rule-set:cn_domain"
+  - "rule-set:google_cn_domain"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - 119.29.29.29
+    - 223.6.6.6
+    
 # 节点
 proxies:
   - { name: '🟢 直连', type: direct, udp: true}
@@ -145,15 +165,12 @@ rule-providers:
   
 # 规则
 rules:
-  # 域名
-
+  ##### 域名
   # 直连
   - RULE-SET,private_domain,🟢 直连
   - DOMAIN,user666.dukadi.one,🟢 直连 
   - DOMAIN,em7.buzz,🟢 直连
   - DOMAIN,k7hub.no-mad-world.club,🟢 直连
-  - DOMAIN-SUFFIX,fucku.mom,🟢 直连
-  - DOMAIN-SUFFIX,yishiguji.me,🟢 直连
   # 微软GitHub
   - RULE-SET,microsoft@cn_domain,🟢 直连
   - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
@@ -196,13 +213,16 @@ rules:
   # 苹果服务
   - RULE-SET,apple@cn_domain,🍎 苹果服务
   # 国外代理
+  - DOMAIN-SUFFIX,yishiguji.me,♻️ 自动选择
   - DOMAIN-SUFFIX,hajimi.icu,🌍 国外代理
   - DOMAIN-SUFFIX,dukadi.one,🌍 国外代理
+  - DOMAIN-SUFFIX,eclipse.org,🌍 国外代理
+  - DOMAIN-SUFFIX,claw.cloud,🇸🇬 新加坡
   - DOMAIN-SUFFIX,qichiyu.com,🇺🇸 美国
   - RULE-SET,google_domain,🌍 国外代理
   - RULE-SET,gfw_domain,🌍 国外代理
   - RULE-SET,geolocation-!cn,🌍 国外代理
-  # ip
+  ##### ip
   - RULE-SET,telegram_ip,📲 电报信息,no-resolve
   - RULE-SET,google_ip,🌍 国外代理,no-resolve
   - RULE-SET,cn_ip,🟢 直连

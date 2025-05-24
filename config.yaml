@@ -65,15 +65,16 @@ proxies:
 
 # 代理组锚点   
 pg:
-  pr1: &pr1 {type: select, lazy: true, proxies: [🚀 节点选择, ♻️ 自动选择, 🌐 全部节点, 🇯🇵 日本, 🇭🇰 香港, 🇸🇬 新加坡, 🇬🇧 英国, 🇦🇺 澳大利亚, 🇫🇷 法国, 🇺🇸 美国, 🇮🇳 印度, 🇻🇳 越南, 🇩🇪 德国, 🇰🇷 韩国, 🇹🇼 台湾, 🟢 直连]}
+  pr1: &pr1 {type: select, lazy: true, proxies: [🚀 节点选择, ♻️ 自动选择, 🌐 全部节点, 🇭🇰 香港, 🇹🇼 台湾, 🇸🇬 新加坡, 🇯🇵 日本, 🇺🇸 美国, 🇰🇷 韩国, 🟢 直连]}
   pr2: &pr2 {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 20, include-all: true, lazy: true, hidden: true}
   pr3: &pr3 {type: load-balance, strategy: round-robin, lazy: false, interval: 300, hidden: true, url: https://www.gstatic.com/generate_204}
   pr4: &pr4 {type: url-test, url: https://cp.cloudflare.com/generate_204, interval: 300, tolerance: 10, lazy: false, hidden: false}
+
 # 代理组
 proxy-groups:
-  - {name: 🚀 节点选择, type: select, proxies: [♻️ 自动选择, 🌐 全部节点, 🇯🇵 日本, 🇭🇰 香港, 🇸🇬 新加坡, 🇬🇧 英国, 🇦🇺 澳大利亚, 🇫🇷 法国, 🇺🇸 美国, 🇮🇳 印度, 🇻🇳 越南, 🇩🇪 德国, 🇰🇷 韩国, 🇹🇼 台湾, 🟢 直连]}
+  - {name: 🚀 节点选择, type: select, proxies: [♻️ 自动选择, 🌐 全部节点, 🇭🇰 香港, 🇹🇼 台湾, 🇸🇬 新加坡, 🇯🇵 日本, 🇺🇸 美国, 🇰🇷 韩国]}
   - {name: 🌐 全部节点, type: select, include-all: true, exclude-type: Direct|Reject}
-  - {name: ♻️ 自动选择, type: url-test, url: https://www.gstatic.com/generate_204, lazy: false, interval: 300, tolerance: 50, include-all: true, exclude-type: Direct|Reject,hidden: true}
+  - {name: ♻️ 自动选择, type: url-test, url: https://www.gstatic.com/generate_204, lazy: false, interval: 300, tolerance: 50, include-all: true, exclude-type: Direct|Reject}
   - {name: 🎮 Steam地区,!!merge <<: *pr1}
   - {name: 🌐 Steam下载,!!merge <<: *pr1}
   - {name: 🤖 chatGPT, include-all: true, filter: chatGPT,!!merge <<: *pr1}
@@ -85,18 +86,12 @@ proxy-groups:
   - {name: 📺 Bilibili,!!merge <<: *pr1}
   - {name: 🌍 国外代理,!!merge <<: *pr1}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr1}
-  - {name: 🇯🇵 日本, filter: 日本|JP,!!merge <<: *pr2}
   - {name: 🇭🇰 香港, filter: 香港|HK,!!merge <<: *pr2}
+  - {name: 🇹🇼 台湾, filter: 台湾|TW, !!merge <<: *pr2}
   - {name: 🇸🇬 新加坡, filter: 新加坡|SG,!!merge <<: *pr2}
-  - {name: 🇬🇧 英国, filter: 英国|UK,!!merge <<: *pr2}
-  - {name: 🇦🇺 澳大利亚, filter: 悉尼|AU|澳大利亚,!!merge <<: *pr2}
-  - {name: 🇫🇷 法国, filter: 法国|FR,!!merge <<: *pr2}
+  - {name: 🇯🇵 日本, filter: 日本|JP,!!merge <<: *pr2}
   - {name: 🇺🇸 美国, filter: 美国|US,!!merge <<: *pr2}
-  - {name: 🇮🇳 印度, filter: 印度|IN,!!merge <<: *pr2}
-  - {name: 🇻🇳 越南, filter: 越南|VN,!!merge <<: *pr2}
-  - {name: 🇩🇪 德国, filter: 德国|DE,!!merge <<: *pr2}
-  - {name: 🇰🇷 韩国, filter: 韩国|KR,!!merge <<: *pr2}
-  - {name: 🇹🇼 台湾, filter: TW|台湾, !!merge <<: *pr2}
+  - {name: 🇰🇷 韩国, filter: 韩国,!!merge <<: *pr2}
 
   
 #规则集锚点
