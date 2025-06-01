@@ -31,93 +31,10 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
       proxy: 🟢 直连
-    url: https://linuxdo.miaoqiqi.me/linuxdo/love
+    url: https://shorturl.at/k7W4X
     path: ./机场订阅/provider3.yaml
     exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
 
-  provider4:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: https://bh.jiedianxielou.workers.dev
-    path: ./机场订阅/provider4.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider5:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: https://shorturl.at/k7W4X
-    path: ./机场订阅/provider5.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider6:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: http://64.181.242.230/api/v1/client/subscribe?token=7e661917e3b7bec79c1955f6bcd24101
-    path: ./机场订阅/provider6.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider7:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: https://surl.li/qyulzy
-    path: ./机场订阅/provider7.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider8:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: https://goo.su/rnpgO
-    path: ./机场订阅/provider8.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider9:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: https://9.baiproxy.workers.dev
-    path: ./机场订阅/provider9.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider10:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
-    url: https://8-cww.pages.dev/8?clash
-    path: ./机场订阅/provider10.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
 
 # 全局配置
 mixed-port: 7897
