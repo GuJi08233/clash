@@ -7,7 +7,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
       proxy: 🟢 直连
-    url: https://wanmeiwl3.xyz/gywl/4e3979fc330fc6b7806f3dc78a696f10
+    url: https://bestsub.bestrui.ggff.net/share/bestsub/cdcefaa4-1f0d-462e-ba76-627b344989f2/all.yaml
     path: ./机场订阅/provider1.yaml
     exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
 
@@ -19,20 +19,8 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
       proxy: 🟢 直连
-    url: https://bestsub.bestrui.ggff.net/share/bestsub/cdcefaa4-1f0d-462e-ba76-627b344989f2/all.yaml
-    path: ./机场订阅/provider2.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
-
-  provider3:
-    type: http
-    interval: 360
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      proxy: 🟢 直连
     url: https://shorturl.at/k7W4X
-    path: ./机场订阅/provider3.yaml
+    path: ./机场订阅/provider2.yaml
     exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
 
 
