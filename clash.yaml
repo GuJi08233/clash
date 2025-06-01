@@ -9,7 +9,7 @@ proxy-providers:
       proxy: 🟢 直连
     url: https://bestsub.bestrui.ggff.net/share/bestsub/cdcefaa4-1f0d-462e-ba76-627b344989f2/all.yaml
     path: ./机场订阅/provider1.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网|过期
 
   provider2:
     type: http
@@ -21,7 +21,7 @@ proxy-providers:
       proxy: 🟢 直连
     url: https://shorturl.at/k7W4X
     path: ./机场订阅/provider2.yaml
-    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网|过期
 
 
 # 全局配置

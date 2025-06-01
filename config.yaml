@@ -10,7 +10,7 @@ proxy-providers:
 #      proxy: 🟢 直连
 #    url: https://provider
 #    path: ./机场订阅/provider.yaml
-#    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+#    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网|过期
 
 # 全局配置
 mixed-port: 7897
