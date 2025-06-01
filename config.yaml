@@ -11,6 +11,7 @@ proxy-providers:
 #    url: https://provider
 #    path: ./机场订阅/provider.yaml
 #    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
 # 全局配置
 mixed-port: 7897
 ipv6: true
@@ -23,7 +24,7 @@ log-level: warning
 
 # 控制面板
 external-controller: 0.0.0.0:9097
-secret: ""
+secret: "oEyMp9>_ISg7P5;H[1#5f?W{Yct3a=ChkrNl-y22:E(WC;;,qTe,_q?!k_jPm9Qu"
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
@@ -55,9 +56,14 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+    - 114.114.114.114
+    - 1.1.1.1
   nameserver:
+    - 8.8.8.8
     - 119.29.29.29
     - 223.6.6.6
+    - 114.114.114.114
+    - 1.1.1.1
 # 节点
 proxies:
   - { name: 🟢 直连, type: direct, udp: true }
@@ -131,9 +137,6 @@ rules:
   ##### 域名
   # 直连
   - RULE-SET,private_domain,🟢 直连
-  - DOMAIN,user666.dukadi.one,🟢 直连 
-  - DOMAIN,em7.buzz,🟢 直连
-  - DOMAIN,k7hub.no-mad-world.club,🟢 直连
   # 微软GitHub
   - RULE-SET,microsoft@cn_domain,🟢 直连
   - RULE-SET,microsoft_domain,Ⓜ️ 微软服务
@@ -176,12 +179,6 @@ rules:
   # 苹果服务
   - RULE-SET,apple@cn_domain,🍎 苹果服务
   # 国外代理
-  - DOMAIN-SUFFIX,yishiguji.me,🚀 节点选择
-  - DOMAIN-SUFFIX,hajimi.icu,🌍 国外代理
-  - DOMAIN-SUFFIX,dukadi.one,🌍 国外代理
-  - DOMAIN-SUFFIX,eclipse.org,🌍 国外代理
-  - DOMAIN-SUFFIX,claw.cloud,🇸🇬 新加坡
-  - DOMAIN-SUFFIX,qichiyu.com,🇺🇸 美国
   - RULE-SET,google_domain,🌍 国外代理
   - RULE-SET,gfw_domain,🌍 国外代理
   - RULE-SET,geolocation-!cn,🌍 国外代理

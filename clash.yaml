@@ -1,3 +1,124 @@
+proxy-providers:
+  provider1:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://wanmeiwl3.xyz/gywl/4e3979fc330fc6b7806f3dc78a696f10
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider2:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://bestsub.bestrui.ggff.net/share/bestsub/cdcefaa4-1f0d-462e-ba76-627b344989f2/all.yaml
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider3:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://linuxdo.miaoqiqi.me/linuxdo/love
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider4:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://bh.jiedianxielou.workers.dev
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider5:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://shorturl.at/k7W4X
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider6:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: http://64.181.242.230/api/v1/client/subscribe?token=7e661917e3b7bec79c1955f6bcd24101
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider7:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://surl.li/qyulzy
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider8:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://goo.su/rnpgO
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider9:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://9.baiproxy.workers.dev
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
+  provider10:
+    type: http
+    interval: 360
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      proxy: 🟢 直连
+    url: https://8-cww.pages.dev/8?clash
+    path: ./机场订阅/provider.yaml
+    exclude-filter: 流量|订阅|去除|剩余|套餐|t.me|官网
+
 # 全局配置
 mixed-port: 7897
 ipv6: true
@@ -10,7 +131,7 @@ log-level: warning
 
 # 控制面板
 external-controller: 0.0.0.0:9097
-secret: ""
+secret: "oEyMp9>_ISg7P5;H[1#5f?W{Yct3a=ChkrNl-y22:E(WC;;,qTe,_q?!k_jPm9Qu"
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
@@ -42,64 +163,19 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+    - 114.114.114.114
+    - 1.1.1.1
   nameserver:
+    - 8.8.8.8
     - 119.29.29.29
     - 223.6.6.6
+    - 114.114.114.114
+    - 1.1.1.1
     
 # 节点
 proxies:
   - { name: '🟢 直连', type: direct, udp: true}
   - { name: '🛑 拦截', type: reject, udp: true}
-  - { name: '⚡️香港 - 01', type: ss, server: cc.0000088888.cc, port: 42052, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 02', type: ss, server: cc.0000088888.cc, port: 41223, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 03', type: ss, server: cc.0000088888.cc, port: 39648, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 04', type: ss, server: cc.0000088888.cc, port: 14987, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 05', type: ss, server: cc.0000088888.cc, port: 10228, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 06', type: ss, server: cc.0000088888.cc, port: 22191, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 07', type: ss, server: cc.0000088888.cc, port: 23834, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️香港 - 08', type: ss, server: cc.0000088888.cc, port: 10518, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️台湾 - 01', type: ss, server: cc.0000088888.cc, port: 10875, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️台湾 - 02', type: ss, server: cc.0000088888.cc, port: 56749, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️台湾 - 03', type: ss, server: cc.0000088888.cc, port: 24521, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️澳门', type: ss, server: cc.0000088888.cc, port: 47165, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️新加坡 - 01', type: ss, server: cc.0000088888.cc, port: 53819, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️新加坡 - 02', type: ss, server: cc.0000088888.cc, port: 22875, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️新加坡 - 03', type: ss, server: cc.0000088888.cc, port: 28269, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️日本 - 01', type: ss, server: cc.0000088888.cc, port: 45983, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️日本 - 02', type: ss, server: cc.0000088888.cc, port: 34075, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️日本 - 03', type: ss, server: cc.0000088888.cc, port: 13675, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️日本 - 04', type: ss, server: cc.0000088888.cc, port: 48082, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 01  | chatGPT', type: ss, server: cc.0000088888.cc, port: 16171, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 02  | chatGPT', type: ss, server: cc.0000088888.cc, port: 23266, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 03  | chatGPT', type: ss, server: cc.0000088888.cc, port: 28107, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 04  | chatGPT', type: ss, server: cc.0000088888.cc, port: 22440, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 05  | chatGPT', type: ss, server: cc.0000088888.cc, port: 23452, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 06  | chatGPT', type: ss, server: cc.0000088888.cc, port: 20111, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️美国 - 07  | chatGPT', type: ss, server: cc.0000088888.cc, port: 35515, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️韩国 - 01', type: ss, server: cc.0000088888.cc, port: 40904, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️韩国 - 02', type: ss, server: cc.0000088888.cc, port: 50401, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️韩国 - 03', type: ss, server: cc.0000088888.cc, port: 58413, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️韩国 - 04', type: ss, server: cc.0000088888.cc, port: 35231, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️印度', type: ss, server: cc.0000088888.cc, port: 36571, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️越南', type: ss, server: cc.0000088888.cc, port: 24909, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️英国', type: ss, server: cc.0000088888.cc, port: 49657, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️法国 - 01', type: ss, server: cc.0000088888.cc, port: 39401, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️法国 - 02', type: ss, server: cc.0000088888.cc, port: 49808, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️德国 - 01', type: ss, server: cc.0000088888.cc, port: 45314, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️德国 - 02', type: ss, server: cc.0000088888.cc, port: 13456, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️巴西', type: ss, server: cc.0000088888.cc, port: 17513, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️葡萄牙', type: ss, server: cc.0000088888.cc, port: 40873, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️西班牙', type: ss, server: cc.0000088888.cc, port: 27409, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️尼泊尔 - 01', type: ss, server: cc.0000088888.cc, port: 26503, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️尼泊尔 - 02', type: ss, server: cc.0000088888.cc, port: 41431, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️土耳其', type: ss, server: cc.0000088888.cc, port: 55513, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️墨西哥', type: ss, server: cc.0000088888.cc, port: 15725, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️俄罗斯', type: ss, server: cc.0000088888.cc, port: 34056, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️乌克兰', type: ss, server: cc.0000088888.cc, port: 40862, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '⚡️澳大利亚', type: ss, server: cc.0000088888.cc, port: 37268, cipher: chacha20-ietf-poly1305, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true }
-  - { name: '🌈香港 - 01 ｜ 直连', type: trojan, server: hk-hgc.cdn-yx.buzz, port: 20052, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true, sni: hk-hgc.cdn-yx.buzz, skip-cert-verify: true }
-  - { name: '🌈香港 - 02 ｜ 直连', type: trojan, server: hk-hkbn.cdn-yx.buzz, port: 20052, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true, sni: hk-hkbn.cdn-yx.buzz, skip-cert-verify: true }
-  - { name: '🌈台湾 ｜ 直连', type: trojan, server: tw-taian.cdn-yx.buzz, port: 20052, password: 207ac548-414f-489f-9672-f457244cf77c, udp: true, sni: tw-taian.cdn-yx.buzz, skip-cert-verify: true }
 
 # 代理组锚点   
 pg:
