@@ -63,7 +63,7 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, url: https://www.gstatic.com/generate_204, lazy: false, interval: 300, tolerance: 10, include-all: true, exclude-type: Direct|Reject,hidden: true}
   - {name: 🎮 Steam地区,!!merge <<: *pr1}
   - {name: 🌐 Steam下载,!!merge <<: *pr1}
-  - {name: 🤖 AI服务, include-all: true, filter: openai|gemini,!!merge <<: *pr1}
+  - {name: 🤖 AI服务, include-all: true, filter: openai|gemini|GPT|GM|chatGPT,!!merge <<: *pr1}
   - {name: 📲 电报信息,!!merge <<: *pr1}
   - {name: Ⓜ️ 微软服务,!!merge <<: *pr1}
   - {name: 🍎 苹果服务,!!merge <<: *pr1}
